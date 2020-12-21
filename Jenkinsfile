@@ -52,16 +52,16 @@ pipeline{
       }
  }
 // Email Notification
-	post {
-        failure {
-            script {
-                currentBuild.result = 'FAILURE'
-            }
-        }
+	//post {
+       // failure {
+          //  script {
+            //    currentBuild.result = 'FAILURE'
+           // }
+        //}
 
-        always {
-           step([$class: 'Mailer',notifyEveryUnstableBuild: true,recipients: "gjilludimudi@miraclesoft.com,pkannepalli@miraclesoft.com,sarikatla@miraclesoft.com,sakapelly@miraclesoft.com,mkarnam@miraclesoft.com",sendToIndividuals: true])
+        //always {
+         //  step([$class: 'Mailer',notifyEveryUnstableBuild: true,recipients: "gjilludimudi@miraclesoft.com,pkannepalli@miraclesoft.com,sarikatla@miraclesoft.com,sakapelly@miraclesoft.com,mkarnam@miraclesoft.com",sendToIndividuals: true])
 	
-        }
-    }
+        //}
+    //}
 }
