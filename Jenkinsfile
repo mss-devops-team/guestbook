@@ -22,7 +22,8 @@ pipeline{
 	//  sh "sudo docker login -u maniengg -p ${DOKCER_HUB_PASSWORD}"
         //  sh "sudo docker push maniengg/php-redis:${BUILD_ID}"
 	  //sh "sudo docker push maniengg/redis-follower:${BUILD_ID}"
-	withCredentials([string(credentialsId: 'saidockerpwd', variable: 'docker-pwd')]) {
+	//withCredentials([string(credentialsId: 'saidockerpwd', variable: 'docker-pwd')]) {
+		withCredentials([usernameColonPassword(credentialsId: 'saidockerhub', variable: 'dockerhub')]) {
 		sh "sudo docker login -u saikannepalli -p ${docker-pwd}"
 		sh "sudo docker push saikannepalli/php-redis:${BUILD_ID}"
 		sh "sudo docker push saikannepalli/redis-follower:${BUILD_ID}"
