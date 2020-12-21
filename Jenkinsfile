@@ -67,8 +67,9 @@ pipeline{
         //}
 
         //always {
-         //  step([$class: 'Mailer',notifyEveryUnstableBuild: true,recipients: "gjilludimudi@miraclesoft.com,pkannepalli@miraclesoft.com,sarikatla@miraclesoft.com,sakapelly@miraclesoft.com,mkarnam@miraclesoft.com",sendToIndividuals: true])
+         //  step([$class: 'Mailer',notifyEveryUnstableBuild: true,recipients: //"gjilludimudi@miraclesoft.com,pkannepalli@miraclesoft.com,sarikatla@miraclesoft.com,sakapelly@miraclesoft.com,mkarnam@miraclesoft.com",sendToIndividuals: true])
 	
         //}
     //}
 }
+
