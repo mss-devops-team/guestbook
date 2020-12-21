@@ -25,7 +25,7 @@ pipeline{
 	//withCredentials([string(credentialsId: 'saidockerpwd', variable: 'docker-pwd')]) {
 		//withCredentials([usernameColonPassword(credentialsId: 'saidockerhub', variable: 'dockerhub')]) {
 		withCredentials([string(credentialsId: 'saidockerpwd', variable: 'saidockerpwd')]) {
-		sh "sudo docker login -u saikannepalli -p ${docker-pwd}"
+		sh "sudo docker login -u saikannepalli -p ${saidockerpwd}"
 		sh "sudo docker push saikannepalli/php-redis:${BUILD_ID}"
 		sh "sudo docker push saikannepalli/redis-follower:${BUILD_ID}"
 		
