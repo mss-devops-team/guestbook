@@ -24,18 +24,21 @@ pipeline{
         }
      }     
 // Application Deploying into K8s Cluster
-     stage("Deploy To Kuberates Cluster"){
-      steps{
-//Created Service Account in GCP console and generated key is added it to the Jenkins Credentials.
-        withCredentials([file(credentialsId: 'demo-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-//activate the service account
-         sh "gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}"
+    stage('Deploy to kubbernetes')
+	{
+	steps{
+		        withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+	sh "gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}"
 //Configuring the project details to Jenkins and communicate with the gke cluster
          sh "gcloud config set project mssdevops-284216"
          sh "gcloud config set compute/zone us-central1-c"
          sh "gcloud config set compute/region us-central1"
          sh "gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project mssdevops-284216"
-         sh "sed -i -e 's,image_to_be_deployed,'maniengg/php-redis:${BUILD_ID}',g' frontend-deployment.yaml"
+	 sh "kubectl version"
+                  sh "kubectl get ns" 
+		  sh "kubectl version" 
+			
+	    sh "sed -i -e 's,image_to_be_deployed,'maniengg/php-redis:${BUILD_ID}',g' frontend-deployment.yaml"
 //Kubernetes Deployments and Services
          sh "kubectl apply -f frontend-deployment.yaml"    // This yamal file represent the frontend-deployment 
          sh "kubectl apply -f frontend-service.yaml"
