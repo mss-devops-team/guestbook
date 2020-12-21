@@ -10,8 +10,8 @@ pipeline{
 	  steps{
 	     //sh "sudo docker build -t maniengg/php-redis:${BUILD_ID} php-redis/"   //when we run docker in this step, we're running it via a shell on the docker build-pod container
              //sh "sudo docker build -t maniengg/redis-follower:${BUILD_ID} redis-follower/"
-            sh "sudo docker build -t saikannepalli/phpredis:${BUILD_ID} phpredis/"		  
-            sh "sudo docker build -t saikannepalli/redisfollower:${BUILD_ID} redisfollower/" 
+            sh "sudo docker build -t saikannepalli/php-redis:${BUILD_ID} php-redis/"		  
+            sh "sudo docker build -t saikannepalli/redis-follower:${BUILD_ID} redis-follower/" 
 	  }
        }
  // Pushing the Docker Image to DockerHub   
@@ -24,8 +24,8 @@ pipeline{
 	  //sh "sudo docker push maniengg/redis-follower:${BUILD_ID}"
 	withCredentials([string(credentialsId: 'saidockerpwd', variable: 'docker-pwd')]) {
 		sh "sudo docker login -u saikannepalli -p ${docker-pwd}"
-		sh "sudo docker push saikannepalli/phpredis:${BUILD_ID}"
-		sh "sudo docker push saikannepalli/redisfollower:${BUILD_ID}"
+		sh "sudo docker push saikannepalli/php-redis:${BUILD_ID}"
+		sh "sudo docker push saikannepalli/redis-follower:${BUILD_ID}"
 		
             }
         }
